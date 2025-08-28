@@ -22,8 +22,6 @@ public class ApiNegativeTests {
         code404ResponseSpec = RestAssured.expect().statusCode(404);
     }
 
-
-
     @Test
     @DisplayName("Код ответа 404, страна не найдена")
     void shouldBe404ResponseCodeAndCountryNotFound () {

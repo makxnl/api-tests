@@ -18,7 +18,7 @@ public class ApiPositiveTests {
     @BeforeAll
     static void init() {
         requestSpec = RestAssured.given()
-                .baseUri("https://restcountries.com/")
+                .baseUri("https://restcountries.com")
                 .contentType("application/json");
         code200ResponseSpec = RestAssured.expect().statusCode(200);
     }
