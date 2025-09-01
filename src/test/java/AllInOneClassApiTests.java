@@ -43,9 +43,9 @@ public class AllInOneClassApiTests {
         requestSpec
                 .log().uri()
                 .when()
-                .get("/v3.1/name/{russia}", name)
+                .get("/v3.1/name/{name}", name)
                 .then()
-                .log().all()
+//                .log().all()
                 .spec(code200ResponseSpec)
                 .body("[0].name.common", equalTo("Russia"))
                 .body("[0].capital[0]", equalTo("Moscow"));
@@ -59,14 +59,15 @@ public class AllInOneClassApiTests {
                 .spec(requestSpec)
                 .log().uri()
                 .when()
-                .get("/v3.1/name/{russia}", name)
+                .get("/v3.1/name/{name}", name)
                 .then()
-                .log().all()
+//                .log().all()
                 .spec(code200ResponseSpec)
                 .extract().response();
         assertAll(
-                () -> assertEquals("Russia", response.path("[0].name.common")),
-                () -> assertEquals("Moscow", response.path("[0].capital[0]"))
+                () -> assertEquals("Russia", response.path("[0].name.common"))
+                , () -> assertEquals("Moscow", response.path("[0].capital[0]"))
+                , () -> assertEquals(true, response.getHeaders().toString().contains("Server"))
         );
     }
 
@@ -78,7 +79,7 @@ public class AllInOneClassApiTests {
                 .when()
                 .get("/v3.1/name/{name}", wrongName)
                 .then()
-                .log().all()
+//                .log().all()
                 .spec(code404ResponseSpec);
     }
 
